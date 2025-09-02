@@ -57,7 +57,7 @@ public:
 	{
 		if (UglTFRuntimeGeometryCacheTrack* RuntimeTrack = Cast<UglTFRuntimeGeometryCacheTrack>(Track))
 		{
-			int32 ThisSampleIndex = RuntimeTrack->GetSampleInfoIndex(Time, bLooping);
+			const int32 ThisSampleIndex = RuntimeTrack->GetSampleInfoIndex(Time, bLooping);
 
 			OutFrameIndex = ThisSampleIndex;
 			OutNextFrameIndex = OutFrameIndex + 1;
@@ -71,7 +71,6 @@ public:
 			const float FrameIndexTime0 = RuntimeTrack->GetMeshSampleTime(OutFrameIndex);
 			const float FrameIndexTime1 = RuntimeTrack->GetMeshSampleTime(OutNextFrameIndex);
 			InInterpolationFactor = (AdjustedTime - FrameIndexTime0) / (FrameIndexTime1 - FrameIndexTime0);
-
 			if (bIsPlayingBackwards)
 			{
 				Swap(OutFrameIndex, OutNextFrameIndex);

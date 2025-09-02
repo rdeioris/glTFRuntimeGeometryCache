@@ -101,7 +101,11 @@ bool UglTFRuntimeGeometryCacheTrack::GetMeshDataAtTime(float Time, FGeometryCach
 
 bool UglTFRuntimeGeometryCacheTrack::IsTopologyCompatible(const int32 SampleIndexA, const int32 SampleIndexB) const
 {
+	return false;
+	// TODO: understand why I get artifacts
+#if 0
 	return SampleInfos.IsValidIndex(SampleIndexA) && SampleInfos.IsValidIndex(SampleIndexB) && SampleInfos[SampleIndexA].NumVertices == SampleInfos[SampleIndexB].NumVertices;
+#endif
 }
 
 void UglTFRuntimeGeometryCacheTrack::AddMeshSample(const FGeometryCacheMeshData& InMeshData, const TArray<UMaterialInterface*>& InMeshMaterials, const float SampleTime)
